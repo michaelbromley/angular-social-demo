@@ -43,12 +43,14 @@ AngularJS template file, redirect it to a server-generated page that will contai
 
 1. A web server capable of URL rewriting. In this case, we are using Apache and the mod_rewrite module.
 2. A server-side language to generate our crawler-friendly pages. In this case I will use PHP.
+3. The Angular app must be using "html5mode" its URLs. This is because the `#` portion of a URL does not get sent to the server, so makes server-side redirection based on the
+Angular page impossible. For more information, see [this StackOverflow answer](http://stackoverflow.com/a/16678065/772859).
 
 Following is a write-up of how to set things up assuming the above technologies are being used.
 
 ### Configure Apache
 
-We will need two specific Apache modules enabled: mod_rewrite and mod_proxy (installation of these modules will vary depending on your OS/Apache version, but is beyond the scope
+We will need three specific Apache modules enabled: mod_rewrite, mod_proxy and mod_proxy_http (installation of these modules will vary depending on your OS/Apache version, but is beyond the scope
 of this article). We will come back to the use of these modules shortly.
 
 ### Set up the server-side script
@@ -96,7 +98,8 @@ The output of this script can be tested by visiting it directly in the browser. 
 
 ### Redirect crawlers to the server-side script
 
-Now that we have our server-side script up an running, we just need to set up the redirection. This is done with an `.htaccess` file containing the following rule:
+Now that we have our server-side script up an running, we just need to set up the redirection. This technique requires the use of the three Apache modules mentioned earlier,
+and is done with an `.htaccess` file containing the following rule:
 
 ```ApacheConf
 <ifModule mod_rewrite.c>
@@ -117,6 +120,9 @@ expression are based on the known user agents of the various social media crawle
 * Pinterest: `Pinterest/0.1 +http://pinterest.com/`
 * Google Plus: `Google (+https://developers.google.com/+/web/snippet/)`
 * Google Structured Data Testing tool: `Google-StructuredDataTestingTool; +http://www.google.com/webmasters/tools/richsnippets`
+
+The `[P]` flag causes Apache to perform a remap using mod_proxy and mod_proxy_http, rather than a regular redirect. If a 301 redirect is used, Facebook for example will link to
+the "static-page.php" URL rather than the original URL.
 
 ### Test it out
 
