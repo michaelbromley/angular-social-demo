@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="socialDemo">
+<head>
+    <base href="/experiments/angular-social-demo/">
+    <title>{{ metadata.title || 'My Favourite Albums' }}</title>
+    <link rel="stylesheet" href="vendor/bootstrap.min.css" />
+
+
+    <!-- Twitter summary card metadata -->
+    <meta property="twitter:card" content="summary" />
+    <meta property="twitter:site" content="@michlbrmly" />
+    <meta property="twitter:title" content="{{ metadata.title }}" />
+    <meta property="twitter:description" content="{{ metadata.description }}" />
+    <meta property="twitter:image" content="{{ metadata.image }}" />
+    <meta property="twitter:url" content="{{ metadata.url }}" />
+
+    <!-- Facebook open graph metadata -->
+    <meta property="og:title" content="{{ metadata.title }}" />
+    <meta property="og:site_name " content="My Favourite Albums" />
+    <meta property="og:url " content="{{ metadata.url }}" />
+    <meta property="og:description" content="{{ metadata.description }}" />
+    <meta property="og:image" content="{{ metadata.image }}" />
+
+</head>
+<body>
+
+<div class="container">
+    <div ng-view></div>
+</div>
+
+<script src="vendor/angular.js" ></script>
+<script src="vendor/angular-route.js" ></script>
+<script src="scripts/app.js" ></script>
+<script src="scripts/albumController.js" ></script>
+</body>
+</html>

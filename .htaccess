@@ -1,0 +1,15 @@
+<ifModule mod_rewrite.c>
+ RewriteEngine On
+
+# allow facebook & twitter crawler to work by redirecting it to a server-rendered static version on the page
+RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit/[0-9]|Twitterbot)
+RewriteRule album/(\d*)$ http://www.michaelbromley.co.uk/experiments/angular-social-demo/server/static-page.php?id=$1 [P]
+
+
+# Required to allow direct-linking of pages so they can be processed by Angular
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !index
+RewriteRule (.*) index.html [L]
+
+</ifModule>
