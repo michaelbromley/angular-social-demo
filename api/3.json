@@ -1,7 +1,7 @@
 {
     "id" : 3,
-    "artist" : "OK Computer",
-    "title" : "Radiohead",
+    "artist" : "Radiohead",
+    "title" : "OK Computer",
     "image" : "api/images/ok_computer.jpg",
     "description" : "OK Computer is the third studio album by the English alternative rock band Radiohead, released in 1997 on Parlophone and Capitol Records. OK Computer was the first self-produced Radiohead album, with assistance from Nigel Godrich. Radiohead recorded the album in Oxfordshire and Bath between 1996 and early 1997, with most of the recording completed in the historic mansion St Catherine's Court. The band made a deliberate attempt to distance themselves from the guitar-oriented, lyrically introspective style of their previous album, The Bends. OK Computer's abstract lyrics, densely layered sound and wide range of influences laid the groundwork for Radiohead's later, more experimental work."
 }
