@@ -1,10 +1,10 @@
 <?php
 /**
- * This file creates a static page for crawlers such as Facebook.
+ * This file creates a static page for crawlers such as Facebook or Twitter bots that cannot evaluate JavaScript.
  *
  * Created by PhpStorm.
  * User: Michael
- * Date: 12/05/14
+ * Date: 30/06/14
  * Time: 14:31
  */
 
@@ -23,13 +23,12 @@ function getData($siteRoot) {
 
 function makePage($data, $siteRoot) {
     $imageUrl = $siteRoot . $data->image;
-    $pageUrl = $siteRoot . "albums/" . $data->id;
+    $pageUrl = $siteRoot . "album/" . $data->id;
     ?>
     <!DOCTYPE html>
     <html>
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
-
         <title><?php echo $data->title; ?></title>
 
         <!-- Twitter summary card metadata -->
@@ -40,21 +39,18 @@ function makePage($data, $siteRoot) {
         <meta property="twitter:image" content="<?php echo $imageUrl; ?>" />
         <meta property="twitter:url" content="<?php echo $pageUrl; ?>" />
 
-        <!-- Facebook open graph metadata -->
+        <!-- Facebook, Pinterest, Google Plus and others make use of open graph metadata -->
         <meta property="og:title" content="<?php echo $data->title; ?>" />
-        <meta property="og:site_name " content="My Favourite Albums" />
-        <meta property="og:url " content="<?php echo $pageUrl; ?>" />
         <meta property="og:description" content="<?php echo $data->description; ?>" />
         <meta property="og:image" content="<?php echo $imageUrl; ?>" />
+        <meta property="og:type" content="article" />
+        <meta property="og:site_name" content="My Favourite Albums" />
+        <meta property="og:url" content="<?php echo $pageUrl; ?>" />
 
     </head>
     <body>
     <p><?php echo $data->description; ?></p>
-    <pre>
-        <?php print_r($_SERVER); ?>
-    </pre>
-    <footer class="footer">
-    </footer>
+    <img src="<?php echo $imageUrl; ?>">
     </body>
     </html>
 <?php

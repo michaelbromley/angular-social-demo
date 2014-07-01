@@ -13,7 +13,7 @@ angular.module("socialDemo", [ 'ngRoute'])
                     // get the album info by a call to our fake API (just a bunch of static json files)
                     album: function($http, $route) {
                         var promise = $http
-                            .get('api/' + $route.current.params.id + '.json')
+                            .get('api/' + $route.current.params.id)
                             .then(function(response) {
                                 return response.data;
                             });
