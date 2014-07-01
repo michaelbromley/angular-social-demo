@@ -3,6 +3,8 @@
 This is a project which aims to illustrate how to enable rich social media sharing of your AngularJS app. This was created to accompany a talk on the same subject I
 am giving at the [Vienna AngularJS meetup on 30th June 2014](http://www.meetup.com/AngularJS-Vienna/events/186829962/)
 
+#### A working demo of the following implementation can be found [here](http://www.michaelbromley.co.uk/experiments/angular-social-demo/), and all the code is contained in this repo.
+
 ## Background
 
 When sharing a link on social media website such as Facebook and Twitter, the site will send a crawler to the URL being shared in order to scrape data from it to make the
@@ -36,8 +38,6 @@ on the target URL, and as a result they will only see the raw HTML template with
 
 The solution is basically to use some kind of server-side user-agent detection to pick up whenever a social media crawler arrives, and then instead of showing it the plain
 AngularJS template file, redirect it to a server-generated page that will contain the desired meta tags, all filled with the correct information.
-
-#### A working demo of the following implementation can be found [here](http://www.michaelbromley.co.uk/experiments/angular-social-demo/), and all the code is contained in this repo.
 
 ## What we will need
 
@@ -133,3 +133,5 @@ validation tool that will give you an idea of what your URL will look like when 
 * [Twitter Card Validator](https://dev.twitter.com/docs/cards/validation/validator) - you need a twitter account to use it.
 * [Pinterest Rich Pin Validator](https://developers.pinterest.com/rich_pins/validator/)
 * [Google Structured Data Testing tool](http://www.google.com/webmasters/tools/richsnippets)
+
+Also, [Fidder](http://www.telerik.com/fiddler) is a great tool for testing out this kind of thing, since you can manually set the user agent and then inspect the response from the server.
