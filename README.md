@@ -112,6 +112,11 @@ RewriteRule album/(\d*)$ http://www.michaelbromley.co.uk/experiments/angular-soc
 </ifModule>
 ```
 
+If you are using Nginx, I have it working here with the "proxy_pass" redirecting similar to the [P] flag with Apache mod_rewrite
+
+https://gist.github.com/mreigen/4dc8effec8186315c3aac4ce6da46c9a
+
+
 The `RewriteCond` link looks at the [user agent](http://en.wikipedia.org/wiki/User_agent) string to see if it matches the following expression. The specific strings used in this
 expression are based on the known user agents of the various social media crawlers (at the time of this writing):
 
