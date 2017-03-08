@@ -124,6 +124,28 @@ expression are based on the known user agents of the various social media crawle
 The `[P]` flag causes Apache to perform a remap using mod_proxy and mod_proxy_http, rather than a regular redirect. If a 301 redirect is used, Facebook for example will link to
 the "static-page.php" URL rather than the original URL.
 
+#### If you are using NGINX
+
+```
+# NGINX location block
+# this will PROXY-ly map (not 301 redirect) all the crawling requests from facebook, twitter bots... to the server that hosts
+# the template for sharing. On the template, we will diplay only the meta tags in the head (See the template file in this same gist)
+
+# This block goes first
+location /cars {
+  if ($http_user_agent ~* "facebookexternalhit/[0-9]|Twitterbot|Pinterest|Google.*snippet") {
+    rewrite ^/cars/(.*) /cars/$1/share_for_proxy_passing break;
+    proxy_pass http://the-server-that-hosts-the-template-share-for-proxy-passing.com;
+  }
+  rewrite ^/cars/(.*)$ /#/cars/$1 last;
+}
+
+# Then this
+location / {
+  try_files $uri /index.html;
+}
+```
+
 ### Test it out
 
 Now that everything is set up, it's time to test out whether it actually works as expected. All the social media sites we have mentioned so far offer some kind of
